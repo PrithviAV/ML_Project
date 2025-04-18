@@ -117,7 +117,7 @@
   },
   {
     "input": "For what a is x=[1,a] orthogonal to y=[a,\u22121]?",
-    "output": "from sympy import symbols, solve\nx = symbols('x')\nsol = solve(1*x + x*(-1), x)\nprint(\"a:\", sol)"
+    "output": "from sympy import symbols, solve, Eq\nx = symbols('x')\nexpr = 1*x + x*(-1)\nsol = solve(expr, x)\n\nif expr == 0:\n    print(\"a: All real numbers (identity)\")\nelif not sol:\n    print(\"a: No solution\")\nelse:\n    print(\"a:\", sol)"
   },
   {
     "input": "Find inner product of [1,2,3] and [4,5,6].",
