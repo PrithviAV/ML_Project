@@ -2481,7 +2481,7 @@
   },
   {
     "input": "Find a vector orthogonal to both [1, 2, 2] and [2, 3, 4] and lies in the plane x + y + z = 0.",
-    "output": "from sympy import symbols, Eq, solve\nimport numpy as np\nx, y, z = symbols('x y z')\neq1 = Eq(x*1 + y*2 + z*2, 0)\neq2 = Eq(x*2 + y*3 + z*4, 0)\neq3 = Eq(x + y + z, 0)\nsol = solve((eq1, eq2, eq3), (x, y, z), dict=True)\nv = np.array([sol[0][x], sol[0][y], sol[0][z]], dtype=float)\nv = v / np.linalg.norm(v)\nprint(v)"
+    "output": "from sympy import Matrix\nimport numpy as np\n\nA = Matrix([\n    [1, 2, 2],\n    [2, 3, 4],\n    [1, 1, 1]\n])\n\nnull = A.nullspace()\n\nif null:\n    vec = null[0]\n    v = np.array([float(val) for val in vec])\n    v = v / np.linalg.norm(v)\nprint(v)\nelse:\nprint(\"Only trivial solution exists.\")"
   },
   {
     "input": "Find the projection of [4, -2] onto the vector [3, 1] and confirm the error vector is orthogonal.",
